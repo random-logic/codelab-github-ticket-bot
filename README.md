@@ -12,3 +12,4 @@ Sad that Codelab GitHub issue tickets sell out in under a minute? Look no furthe
 # TODO
 1. Add concurrency to LLMs
 2. Make an executable file so it's easier for newbies to run
+3. Make better instructions
