@@ -52,7 +52,7 @@ def main():
 
     print("Attempting to poll website")
     try:
-      issues = camper.read_issues()
+      issues = camper.read_issues_without_lock_or_first_comment()
       # TODO: Add concurrency
       for issue in issues:
         if not USE_LLM_TO_DETERMINE_FIT:
