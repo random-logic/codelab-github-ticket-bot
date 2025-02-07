@@ -1,6 +1,7 @@
 import requests
 import os
 from github import Github
+from datetime import datetime, timedelta, timezone
 
 REPO_NAME = os.environ.get("GITHUB_REPO_NAME", "Codelab-Davis/codelab-ui-components")
 ACCOUNT_TOKEN = os.environ.get("GITHUB_ACCOUNT_TOKEN")
@@ -22,6 +23,7 @@ class GitHub:
     return response.json()
 
   def poll(self):
-    for issue in self.repo.get_issues(state='all'):
-      print(f"Issue Title: {issue.title}")
-      print(f"URL: {issue.html_url}")
+    exclude_numbers = {1, 2} # 1 and 2 aren't legit opportunities
+    issues = self.repo.get_issues(state="open", assignee="none", direction="desc")
+    issues = [issue for issue in issues if not issue.locked and issue.number not in exclude_numbers]
+    return issues
