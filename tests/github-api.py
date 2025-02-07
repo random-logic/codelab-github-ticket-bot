@@ -1,14 +1,10 @@
 import unittest
-import os
+from ..github.api import GithubAPI
 
-
-class MyTestCase(unittest.TestCase):
-  def test_codelab_repo(self):
-    github_token = os.environ.get("GITHUB_TOKEN")
-    if github_token is None:
-      raise Exception("GITHUB_TOKEN environment variable not set")
-
-    # TODO: Add test
+class TestGithubApi(unittest.TestCase):
+  def test_poll(self):
+    api = GithubAPI()
+    api.poll()
 
 if __name__ == '__main__':
   unittest.main()

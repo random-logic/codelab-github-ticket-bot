@@ -1,7 +1,7 @@
 import unittest
 from ..model import Model
 
-class MyTestCase(unittest.TestCase):
+class TestModel(unittest.TestCase):
   def test_rag(self):
     model = Model()
     model.add_chunk_to_database("I like apples")
