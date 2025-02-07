@@ -1,9 +1,9 @@
 import unittest
-from ..github.api import GithubAPI
+from ..githubapi import GitHub
 
 class TestGithubApi(unittest.TestCase):
   def test_poll(self):
-    api = GithubAPI()
+    api = GitHub()
     api.poll()
 
 if __name__ == '__main__':

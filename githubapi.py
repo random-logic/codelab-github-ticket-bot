@@ -5,7 +5,7 @@ from github import Github
 REPO_NAME = os.environ.get("GITHUB_REPO_NAME", "Codelab-Davis/codelab-ui-components")
 ACCOUNT_TOKEN = os.environ.get("GITHUB_ACCOUNT_TOKEN")
 
-class GithubAPI:
+class GitHub:
   def __init__(self, repo_name=REPO_NAME, account_token=ACCOUNT_TOKEN):
     self.g = Github(account_token)
     self.repo = self.g.get_repo(repo_name)
