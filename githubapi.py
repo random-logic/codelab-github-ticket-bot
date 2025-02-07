@@ -15,6 +15,7 @@ class GitHub:
     # TODO
     raise NotImplementedError
 
+  # no permission to use webhooks, so polling is the next best option
   def poll(self):
     exclude_numbers = {1, 2} # 1 and 2 aren't legit opportunities
     issues = self.repo.get_issues(state="open", assignee="none", direction="desc")
