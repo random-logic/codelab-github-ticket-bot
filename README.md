@@ -7,3 +7,8 @@ Sad that Codelab GitHub issue tickets sell out in under a minute? Look no furthe
 3. `pip install -r requirements.txt`
 4. Install Ollama
 5. `ollama pull [model URL]`
+6. Configure sample.env file and change it to .env
+
+# TODO
+1. Add concurrency to LLMs
+2. Make an executable file so it's easier for newbies to run
