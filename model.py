@@ -2,6 +2,9 @@ import os
 from typing import Sequence
 import ollama
 
+from dotenv import load_dotenv
+load_dotenv()
+
 EMBEDDING_MODEL = os.environ.get('EMBEDDING_MODEL', 'hf.co/CompendiumLabs/bge-base-en-v1.5-gguf')
 LANGUAGE_MODEL = os.environ.get('LANGUAGE_MODEL', 'hf.co/bartowski/Llama-3.2-1B-Instruct-GGUF')
 
@@ -14,7 +17,7 @@ class Model:
     self.language_model = language_model
 
   def add_chunk_to_database(self, chunk: str | Sequence[str]):
-    embedding = ollama.embed(model=self.embedding_model, input=chunk)['embeddings'][0]
+    embedding = self.embed(chunk)
     self.vector_db.append((chunk, embedding))
 
   @staticmethod
@@ -25,7 +28,7 @@ class Model:
     return dot_product / (norm_a * norm_b)
 
   def retrieve(self, query: str, top_n = 1):
-    query_embedding = ollama.embed(model=self.embedding_model, input=query)['embeddings'][0]
+    query_embedding = self.embed(query)
 
     # temporary list to store (chunk, similarity) pairs
     similarities = []
@@ -38,3 +41,7 @@ class Model:
     similarities.sort(key=lambda x: x[1], reverse=True)
 
     return similarities[:top_n]
+
+  def embed(self, text: str):
+    embeddings = ollama.embed(model=self.embedding_model, input=text)['embeddings']
+    return embeddings[0]

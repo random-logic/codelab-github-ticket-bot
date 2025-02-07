@@ -8,10 +8,12 @@ class TestModel(unittest.TestCase):
     model.add_chunk_to_database("I don't like oranges")
     model.add_chunk_to_database("I am ok with peaches")
 
-    results = model.retrieve("What do I think about peaches?")
+    query = "What do I think about peaches?"
+    results = model.retrieve(query)
     self.assertEqual(results[0][0], "I am ok with peaches")
 
-    results = model.retrieve("What do I not like?")
+    query = "What do I not like?"
+    results = model.retrieve(query)
     self.assertEqual(results[0][0], "I don't like oranges")
 
 if __name__ == '__main__':
